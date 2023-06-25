@@ -14,12 +14,10 @@
 		</attributes>
 
         <scenes>
-            <scene
-                name = "teapot"
-                filename = "../models/spooder.obj"
-                param="UNITIZE SWAP_YZ" 
-            >
-            <ROTATE x="1" y="0" z="0" w="-180"/>
+            <scene name = "teapot">
+                <file name = "../models/spooder.obj"/>
+                <ROTATE x="0" y="1" z="0" w="180"/>
+                <SCALE x="0.075" y="0.075" z="0.075" />
             </scene>
             <scene name = "plane">
                 <file name = "../models/plane.obj"/>
@@ -31,7 +29,7 @@
         
         <cameras>
             <camera name="main">
-                <POSITION x="0" y="0" z="-2" />
+                <POSITION x="0" y="0" z="-4" />
                 <VIEW x="0" y="0" z="1"/>
                 <projection NEAR="0.1"/>
             </camera>
