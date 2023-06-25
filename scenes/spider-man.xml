@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Spider-Man" width="800" height="400">
+<project name="Toon: Spider-Man" width="800" height="400">
     <assets>
         <attributes>
 			<attribute type="RENDERER" name="divisions_lines" data="INT" value="235" />
