@@ -74,8 +74,8 @@ void main() {
         vec3 h = normalize(l + e);
         float i_spec = max(0.0, pow(dot(h, nn), shininess));
         float dif = distance(vec2(ft2.s, ft2.t), vec2(0.5,0.5));
-        if (i_spec > 0.25 && dif <= 1/line_growth/4) {
-            color += specular;
+        if (i_spec > 0 && dif <= 1/line_growth/4) {
+            color = specular;
         }
     }
     // LINE SHADING
