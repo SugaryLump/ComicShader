@@ -1,7 +1,17 @@
 <?xml version="1.0"?>
 <project name="Toon" width="800" height="400">
-    
     <assets>
+        <attributes>
+			<attribute type="RENDERER" name="divisions_lines" data="INT" value="25" />
+            <attribute type="RENDERER" name="divisions_dither" data="INT" value="50" />
+            <attribute type="RENDERER" name="line_growth" data="FLOAT" value="1" />
+            <attribute type="RENDERER" name="darkness_limit" data="FLOAT" value="0.5" />
+            <attribute type="RENDERER" name="outline_check_radius" data="INT" value="1" />
+            <attribute type="RENDERER" name="outline_min_dif" data="FLOAT" value="0.1" />
+            <attribute type="RENDERER" name="outline_max_dif" data="FLOAT" value="0.2" />
+            <attribute type="RENDERER" name="outline_color" data="VEC4" x="0" y="0" z="0"/>
+            <attribute type="RENDERER" name="noise_scale" data="FLOAT" value="1" />
+		</attributes>
 
         <scenes>
             <scene
@@ -36,19 +46,14 @@
         </materialLibs>
 
         <viewports>
-            <viewport name="depthVisualizer">
-                <ORIGIN x='0.0' y="0.0" />
-                <CLEAR_COLOR  r="1" g="1" b="1" />
-                <SIZE width='0.2' height='0.2' />
-            </viewport>
             <viewport name="posVisualizer">
                 <ORIGIN x='0.0' y="75.0" />
-                <CLEAR_COLOR  r="1" g="1" b="1" />
+                <CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
                 <SIZE width='0.2' height='0.2' />
             </viewport>
             <viewport name="main">
                 <ORIGIN x='0.0' y="0.0" />
-                <CLEAR_COLOR  r="1" g="1" b="1" />
+                <CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
                 <SIZE width='1' height='1' />
             </viewport>
         </viewports>
@@ -63,10 +68,10 @@
                     <scene name="plane" />
                 </scenes>
                 <camera name="main"/>
-                <!--viewport name='depthVisualizer'/-->
-                <renderTarget name="depth" fromLibrary="toon"/>
+                <renderTarget name="info" fromLibrary="toon"/>
+                <viewport name='main'/>
                 <materialMaps>
-                    <map fromMaterial="*" toLibrary="toon" toMaterial="depthOnly" />
+                    <map fromMaterial="*" toLibrary="toon" toMaterial="gatherInfo" />
                 </materialMaps>
             </pass>
 
@@ -85,11 +90,6 @@
                 <viewport name="main" />
             </pass>
 
-            <pass class="quad" name="visualization1">
-				<viewport name="depthVisualizer" />				
-				<texture name="shadowMap" fromLibrary="toon"/>
-			</pass>
-
             <pass class="quad" name="visualization2">
 				<viewport name="posVisualizer" />				
 				<texture name="posMap" fromLibrary="toon"/>
@@ -97,5 +97,18 @@
 
         </pipeline>
     </pipelines>
+    <interface>
+        <window label="Settings">
+            <var label="Line divisions" type="RENDERER" context="CURRENT" component="divisions_lines" def="min=1 max=500 step=1"/>
+            <var label="Dithering divisions" type="RENDERER" context="CURRENT" component="divisions_dither" def="min=1 max=500 step=1"/>
+            <var label="Line growth" type="RENDERER" context="CURRENT" component="line_growth" def="min=1 max=20 step=0.1"/>
+            <var label="Darkness threshold" type="RENDERER" context="CURRENT" component="darkness_limit" def="min=0 max=1 step=0.01"/>
+            <var label="Outline check radius" type="RENDERER" context="CURRENT" component="outline_check_radius" def="min=1 max=10 step=1"/>
+            <var label="Min pos dif" type="RENDERER" context="CURRENT" component="outline_min_dif" def="min=0.01 max=10 step=0.01"/>
+            <var label="Max pos dif" type="RENDERER" context="CURRENT" component="outline_max_dif" def="min=0.01 max=10 step=0.01"/>
+            <var label="Outline Color" type="RENDERER" context="CURRENT" component="outline_color" mode="COLOR"/>
+            <var label="Noise Scale" type="RENDERER" context="CURRENT" component="noise_scale" def="min=0 max=20 step=1"/>
 
+        </window>
+    </interface>
 </project>

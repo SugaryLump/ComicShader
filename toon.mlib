@@ -11,18 +11,15 @@
             ps="shaders/toon.frag"
         />
         <shader
-            name="depthOnly"
-            vs="shaders/depthOnly.vert"
-            ps="shaders/depthOnly.frag"
+            name="gatherInfo"
+            vs="shaders/gatherInfo.vert"
+            ps="shaders/gatherInfo.frag"
         />
     </shaders>
 
     <renderTargets>
-        <renderTarget name="depth">
+        <renderTarget name="info">
                     <SIZE width="800" height="400" />
-                    <depth name="shadowMap"
-                        internalFormat="DEPTH_COMPONENT32F"
-                    />
                     <colors>
                         <color name="posMap" internalFormat="RGBA32F" />
                     </colors>
@@ -70,11 +67,6 @@
                         component="VIEW"
                     />
                     <valueof
-                        uniform="depthTexture"
-                        type="TEXTURE_BINDING"
-                        id="0" component="UNIT"
-                    />
-                    <valueof
                         uniform="posTexture"
                         type="TEXTURE_BINDING"
                         id="1" component="UNIT"
@@ -85,17 +77,53 @@
                         id="2" component="UNIT"
                     />
                     <valueof
-                        uniform="m_vm"
+                        uniform="divisions_lines"
                         type="RENDERER"
-                        component="VIEW_MODEL"
+                        component="divisions_lines"
+                    />
+                    <valueof
+                        uniform="divisions_dither"
+                        type="RENDERER"
+                        component="divisions_dither"
+                    />
+                    <valueof
+                        uniform="line_growth"
+                        type="RENDERER"
+                        component="line_growth"
+                    />
+                    <valueof
+                        uniform="darkness_limit"
+                        type="RENDERER"
+                        component="darkness_limit"
+                    />
+                    <valueof
+                        uniform="outline_check_radius"
+                        type="RENDERER"
+                        component="outline_check_radius"
+                    />
+                    <valueof
+                        uniform="outline_min_dif"
+                        type="RENDERER"
+                        component="outline_min_dif"
+                    />
+                    <valueof
+                        uniform="outline_max_dif"
+                        type="RENDERER"
+                        component="outline_max_dif"
+                    />
+                    <valueof
+                        uniform="outline_color"
+                        type="RENDERER"
+                        component="outline_color"
+                    />
+                    <valueof
+                        uniform="noise_scale"
+                        type="RENDERER"
+                        component="noise_scale"
                     />
                 </values>
             </shader>
             <textures>
-                <texture name="shadowMap" UNIT="0">
-                    <MAG_FILTER value= "NEAREST" />
-					<MIN_FILTER value= "NEAREST" />
-                </texture>
                 <texture name="posMap" UNIT="1">
                     <MAG_FILTER value= "NEAREST" />
 					<MIN_FILTER value= "NEAREST" />
@@ -106,7 +134,7 @@
                 </texture>
             </textures>
         </material>
-        <material name="depthOnly">
+        <material name="gatherInfo">
             <color>
 				<AMBIENT r="0.2" g="0.2" b="0.2" a="1.0" />
 				<DIFFUSE r="0.8" g="0.8" b="0.8" a="1.0" />
@@ -114,7 +142,7 @@
 				<EMISSION r="0.0" g="0.0" b="0.0" a="1.0" />
 				<SHININESS value="0.0" />
 			</color>
-            <shader name="depthOnly">
+            <shader name="gatherInfo">
                 <values>
                     <valueof
                         uniform="m_pvm"
