@@ -2,18 +2,18 @@
 <materialLib name="toon" >
 
     <textures>
-        <texture name="noise" filename="textures/noiseTexture.png"/>
+        <texture name="noise" filename="../textures/noiseTexture.png"/>
     </textures>
     <shaders>
         <shader
             name="toon"
-            vs="shaders/toon.vert"
-            ps="shaders/toon.frag"
+            vs="../shaders/toon.vert"
+            ps="../shaders/toon.frag"
         />
         <shader
             name="gatherInfo"
-            vs="shaders/gatherInfo.vert"
-            ps="shaders/gatherInfo.frag"
+            vs="../shaders/gatherInfo.vert"
+            ps="../shaders/gatherInfo.frag"
         />
     </shaders>
 

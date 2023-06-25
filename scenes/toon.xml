@@ -16,11 +16,11 @@
         <scenes>
             <scene
                 name = "teapot"
-                filename = "models/teapot.3ds"
+                filename = "../models/teapot.3ds"
                 param="UNITIZE SWAP_YZ" 
             />
             <scene name = "plane">
-                <file name = "models/plane.obj"/>
+                <file name = "../models/plane.obj"/>
                 <SCALE x="4" y="4" z="4" />
                 <ROTATE x="1" y="0" z="0" w="-90"/>
                 <TRANSLATE x="0" y="0" z="2" />
@@ -42,7 +42,7 @@
         </lights>
 
         <materialLibs>
-            <materialLib filename="toon.mlib" />
+            <materialLib filename="../materials/toon.mlib" />
         </materialLibs>
 
         <viewports>
