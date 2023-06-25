@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<project name="Toon" width="800" height="400">
+    
+    <assets>
+
+        <scenes>
+            <scene
+                name = "teapot"
+                filename = "models/teapot.3ds"
+                param="UNITIZE SWAP_YZ" 
+            />
+            <scene name = "plane">
+                <file name = "models/plane.obj"/>
+                <SCALE x="4" y="4" z="4" />
+                <ROTATE x="1" y="0" z="0" w="-90"/>
+                <TRANSLATE x="0" y="0" z="2" />
+            </scene>
+        </scenes>
+        
+        <cameras>
+            <camera name="main">
+                <POSITION x="0" y="0" z="-2" />
+                <VIEW x="0" y="0" z="1"/>
+                <projection NEAR="0.1"/>
+            </camera>
+        </cameras>
+
+        <lights>
+            <light name="sun" >
+                <DIRECTION x="5" y="-5" z="5" />
+            </light>
+        </lights>
+
+        <materialLibs>
+            <materialLib filename="toon.mlib" />
+        </materialLibs>
+
+        <viewports>
+            <viewport name="depthVisualizer">
+                <ORIGIN x='0.0' y="0.0" />
+                <CLEAR_COLOR  r="1" g="1" b="1" />
+                <SIZE width='0.2' height='0.2' />
+            </viewport>
+            <viewport name="posVisualizer">
+                <ORIGIN x='0.0' y="75.0" />
+                <CLEAR_COLOR  r="1" g="1" b="1" />
+                <SIZE width='0.2' height='0.2' />
+            </viewport>
+            <viewport name="main">
+                <ORIGIN x='0.0' y="0.0" />
+                <CLEAR_COLOR  r="1" g="1" b="1" />
+                <SIZE width='1' height='1' />
+            </viewport>
+        </viewports>
+
+    </assets>
+
+    <pipelines>
+        <pipeline name="toon" defaultCamera="main">
+            <pass class="default" name="depthMap">
+                <scenes>
+                    <scene name="teapot"/>
+                    <scene name="plane" />
+                </scenes>
+                <camera name="main"/>
+                <!--viewport name='depthVisualizer'/-->
+                <renderTarget name="depth" fromLibrary="toon"/>
+                <materialMaps>
+                    <map fromMaterial="*" toLibrary="toon" toMaterial="depthOnly" />
+                </materialMaps>
+            </pass>
+
+            <pass name="toon" class="default" >
+                <scenes>
+                    <scene name="teapot" />
+                    <scene name="plane" />
+                </scenes>
+                <camera name="main" /> 
+                <lights>
+                    <light name="sun" />
+                </lights>
+                <materialMaps>
+					<map fromMaterial="*" toMaterial="toon" toLibrary="toon" />
+				</materialMaps>
+                <viewport name="main" />
+            </pass>
+
+            <pass class="quad" name="visualization1">
+				<viewport name="depthVisualizer" />				
+				<texture name="shadowMap" fromLibrary="toon"/>
+			</pass>
+
+            <pass class="quad" name="visualization2">
+				<viewport name="posVisualizer" />				
+				<texture name="posMap" fromLibrary="toon"/>
+			</pass>
+
+        </pipeline>
+    </pipelines>
+
+</project>
