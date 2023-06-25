@@ -2,8 +2,8 @@
 <project name="Spider-Man" width="800" height="400">
     <assets>
         <attributes>
-			<attribute type="RENDERER" name="divisions_lines" data="INT" value="25" />
-            <attribute type="RENDERER" name="divisions_dither" data="INT" value="50" />
+			<attribute type="RENDERER" name="divisions_lines" data="INT" value="235" />
+            <attribute type="RENDERER" name="divisions_dither" data="INT" value="237" />
             <attribute type="RENDERER" name="line_growth" data="FLOAT" value="1" />
             <attribute type="RENDERER" name="darkness_limit" data="FLOAT" value="0.5" />
             <attribute type="RENDERER" name="outline_check_radius" data="INT" value="1" />
@@ -14,7 +14,7 @@
 		</attributes>
 
         <scenes>
-            <scene name = "teapot">
+            <scene name = "spider">
                 <file name = "../models/spooder.obj"/>
                 <ROTATE x="0" y="1" z="0" w="180"/>
                 <SCALE x="0.075" y="0.075" z="0.075" />
@@ -64,8 +64,8 @@
         <pipeline name="toon" defaultCamera="main">
             <pass class="default" name="depthMap">
                 <scenes>
-                    <scene name="teapot"/>
-                    <scene name="plane" />
+                    <scene name="spider"/>
+                    <!--<scene name="plane"/> -->
                 </scenes>
                 <camera name="main"/>
                 <renderTarget name="info" fromLibrary="toon"/>
@@ -77,7 +77,7 @@
 
             <pass name="toon" class="default" >
                 <scenes>
-                    <scene name="teapot" />
+                    <scene name="spider" />
                     <scene name="plane" />
                 </scenes>
                 <camera name="main" /> 

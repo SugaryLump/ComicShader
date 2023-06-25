@@ -65,7 +65,7 @@
             <pass class="default" name="depthMap">
                 <scenes>
                     <scene name="teapot"/>
-                    <scene name="plane" />
+                    <!--<scene name="plane"/> -->
                 </scenes>
                 <camera name="main"/>
                 <renderTarget name="info" fromLibrary="toon"/>

@@ -133,12 +133,17 @@
 					<MIN_FILTER value= "NEAREST" />
                 </texture>
             </textures>
+            <color>
+                <SHININESS value="700"/>
+                <SPECULAR r="3.5" g="3.5" b="3.5" a="1.0" />
+                <DIFFUSE r="0.6" g="0.6" b="0.6" a="1.0" />
+            </color>
         </material>
         <material name="gatherInfo">
             <color>
 				<AMBIENT r="0.2" g="0.2" b="0.2" a="1.0" />
 				<DIFFUSE r="0.8" g="0.8" b="0.8" a="1.0" />
-				<SPECULAR r="0.0" g="0.0" b="0.0" a="1.0" />
+				<SPECULAR r="0.2" g="0.2" b="0.2" a="1.0" />
 				<EMISSION r="0.0" g="0.0" b="0.0" a="1.0" />
 				<SHININESS value="0.0" />
 			</color>
